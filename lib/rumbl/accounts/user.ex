@@ -1,6 +1,7 @@
 defmodule Rumbl.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Rumbl.Accounts.Credential
 
   schema "users" do
     field :name, :string
@@ -19,7 +20,7 @@ defmodule Rumbl.Accounts.User do
 
   def registration_changeset(user, attrs) do
     user
-    |> changeset(params)
+    |> changeset(attrs)
     |> cast_assoc(:credential, with: &Credential.changeset/2, required: true)
   end
 end
