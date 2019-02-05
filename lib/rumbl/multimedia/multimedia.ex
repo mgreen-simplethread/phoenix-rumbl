@@ -7,6 +7,7 @@ defmodule Rumbl.Multimedia do
 
   alias Rumbl.Repo
   alias Rumbl.Multimedia.Video
+  alias Rumbl.Multimedia.Category
   alias Rumbl.Accounts
 
   @doc """
@@ -120,6 +121,24 @@ defmodule Rumbl.Multimedia do
     video
     |> Video.changeset(%{})
     |> put_user(user)
+  end
+
+  @doc """
+  Create a new category for videos
+
+  This function is only ever run programmatically, so there's no need for error reporting or changesets right now.
+  """
+  def create_category(name) do
+    Repo.get_by(Category, name: name) || Repo.insert!(%Category{name: name})
+  end
+
+  @doc """
+  Get all categories, sorted by name in ascending order
+  """
+  def list_alphabetical_categories do
+    Category
+    |> Category.alphabetical()
+    |> Repo.all()
   end
 
   defp put_user(changeset, user) do
