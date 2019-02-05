@@ -1,4 +1,5 @@
 alias Rumbl.Repo
-alias Rumbl.Multimedia.Category
-alias Rumbl.Multimedia.Video
+alias Rumbl.Multimedia.{Video, Category}
 alias Rumbl.Accounts.User
+
+import Ecto.Query
