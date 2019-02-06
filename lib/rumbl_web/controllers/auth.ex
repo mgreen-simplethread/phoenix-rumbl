@@ -14,7 +14,7 @@ defmodule RumblWeb.Auth do
     assign(conn, :current_user, user)
 
     cond do
-      user = conn.assigns[:current_user] ->
+      conn.assigns[:current_user] ->
         conn
       user = user_id && Accounts.get_user(user_id) ->
         assign(conn, :current_user, user)
