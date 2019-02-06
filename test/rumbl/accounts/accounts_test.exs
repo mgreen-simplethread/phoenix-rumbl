@@ -62,5 +62,9 @@ defmodule Rumbl.AccountsTest do
     test "returns unauthorized error with bad password" do
       assert {:error, :unauthorized} = Accounts.authenticate_by_email_and_pass(@email, "badpass")
     end
+
+    test "returns not found error with no matching user for email" do
+      assert {:error, :not_found} = Accounts.authenticate_by_email_and_pass("bademail@localhost", @pass)
+    end
   end
 end
