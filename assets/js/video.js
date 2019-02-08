@@ -1,5 +1,6 @@
 import Player from './player';
-import nanohtml, { raw } from 'nanohtml';
+import nanohtml from 'nanohtml';
+import raw from 'nanohtml/raw';
 
 class Video {
   static init(socket, element) {
