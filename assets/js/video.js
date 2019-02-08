@@ -20,6 +20,7 @@ class Video {
       postButton: document.querySelector('#msg-submit'),
     };
     this.vidChannel = null;
+    console.debug('Video instance: %O', this);
   }
 
   initPlayer() {

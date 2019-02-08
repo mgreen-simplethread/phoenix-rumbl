@@ -6,8 +6,11 @@ defmodule Rumbl.Multimedia do
   import Ecto.Query, warn: false
 
   alias Rumbl.Repo
-  alias Rumbl.Multimedia.Video
-  alias Rumbl.Multimedia.Category
+  alias Rumbl.Multimedia.{
+    Video,
+    Category,
+    Annotation
+  }
   alias Rumbl.Accounts
 
   @doc """
@@ -130,6 +133,28 @@ defmodule Rumbl.Multimedia do
   """
   def create_category(name) do
     Repo.get_by(Category, name: name) || Repo.insert!(%Category{name: name})
+  end
+
+  @doc """
+  Add an annotation associated with a user and a video
+  """
+  def annotate_video(%Accounts.User{} = user, video_id, attrs) do
+    %Annotation{video_id: video_id}
+    |> Annotation.changeset(attrs)
+    |> put_user(user)
+    |> Repo.insert()
+  end
+
+  @doc """
+  List annotations for a particular video
+  """
+  def list_annotations(%Video{} = video) do
+    Repo.all(
+      from a in Ecto.assoc(video, :annotations),
+      order_by: [asc: a.at, asc: a.id],
+      limit: 500,
+      preload: [:user]
+    )
   end
 
   @doc """

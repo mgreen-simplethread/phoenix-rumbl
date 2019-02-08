@@ -20,5 +20,3 @@ import Video from './video';
 import socket from './socket';
 
 const video = Video.init(socket, document.getElementById('video'));
-
-console.debug('Video instance: %O', video);
