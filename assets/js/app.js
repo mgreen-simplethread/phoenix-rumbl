@@ -16,12 +16,9 @@ import 'phoenix_html';
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 
-import Player from './player';
+import Video from './video';
+import socket from './socket';
 
-const video = document.getElementById('video');
+const video = Video.init(socket, document.getElementById('video'));
 
-const player = Player.init('video', () => {
-  console.log('Player ready!');
-});
-
-console.log('video player: %O', player);
+console.debug('Video instance: %O', video);
