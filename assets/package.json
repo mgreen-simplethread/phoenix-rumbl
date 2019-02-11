@@ -1,6 +1,9 @@
 {
   "repository": {},
   "license": "MIT",
+  "engines": {
+    "node": "10.15.0"
+  },
   "scripts": {
     "deploy": "webpack --mode production",
     "watch": "webpack --mode development --watch"
