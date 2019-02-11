@@ -29,7 +29,7 @@ defmodule Rumbl.Multimedia.Video do
   defp slugify_title(changeset) do
     case fetch_change(changeset, :title) do
       {:ok, new_title} -> put_change(changeset, :slug, slugify(new_title))
-      {:error} -> changeset
+      :error -> changeset
     end
   end
 
