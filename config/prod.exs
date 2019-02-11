@@ -66,6 +66,21 @@ config :logger, level: :info
 # Note you can't rely on `System.get_env/1` when using releases.
 # See the releases documentation accordingly.
 
-# Finally import the config/prod.secret.exs which should be versioned
-# separately.
-import_config "prod.secret.exs"
+# Load secrets from environment variables in Gigalixir
+
+config :rumbl, RumblWeb.Endpoint,
+  load_from_system_env: true,
+  http: [port: {:system, "PORT"}],
+  server: true,
+  secret_key_base: "${SECRET_KEY_BASE}",
+  url: [host: "${APP_NAME}.gigalixirapp.com", port: 443],
+  cache_static_manifest: "priv/static/cache_manifest.json"
+
+
+# Configure your database
+config :rumbl, Rumbl.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  url: "${DATABASE_URL}",
+  database: "",
+  ssl: true,
+  pool_size: 2
