@@ -54,4 +54,20 @@ defmodule Rumbl.Counter do
   def handle_call(:val, _from, val) do
     {:reply, val, val}
   end
+
+  @doc """
+  This function tells supervisors more about how to run, watch, and restart this process when it's run in a supervision
+  tree.
+  """
+  def child_spec(options) do
+    %{
+      id: __MODULE__,
+      start: {__MODULE__, :start_link, options},
+      restart: :temporary, # Does not restart this process if it crashes or exits
+      # restart: :permanent, # ALWAYS restarts the process if it stops
+      # restart: :transient, # Only restart after abnormal termination
+      shutdown: 5_000,
+      type: :worker
+    }
+  end
 end
