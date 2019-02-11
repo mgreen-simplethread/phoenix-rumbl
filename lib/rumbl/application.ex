@@ -14,7 +14,7 @@ defmodule Rumbl.Application do
       RumblWeb.Endpoint,
       # Starts a worker by calling: Rumbl.Worker.start_link(arg)
       # {Rumbl.Worker, arg},
-      {Rumbl.Counter, 5} # Start a simple counter worker with an initial value of 5
+      Supervisor.child_spec({Rumbl.Counter, 5}, restart: :temporary)
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
