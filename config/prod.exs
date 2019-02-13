@@ -84,3 +84,6 @@ config :rumbl, Rumbl.Repo,
   database: "",
   ssl: true,
   pool_size: 2
+
+# Configure Wolfram API backend
+config :rumbl, :wolfram, app_id: System.get_env("WOLFRAM_APP_ID")
