@@ -1,0 +1,9 @@
+<h1>Watch Videos</h1>
+
+<ul>
+  <%= for video <- @videos do %>
+    <li>
+      <%= link video.title, to: Routes.watch_path(@conn, :show, video) %>
+    </li>
+  <% end %>
+</ul>

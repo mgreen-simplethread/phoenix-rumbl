@@ -1,4 +1,8 @@
 <section class="phx-hero">
   <h1><%= gettext "Welcome to %{name}!", name: "Rumbl.io" %></h1>
   <p>Rumbl out loud</p>
+
+  <p>
+    <%= link "Watch Videos", to: Routes.watch_path(@conn, :index) %>
+  </p>
 </section>
